@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "hero-img",
+			"path": "."
+		},
+		{
+			"name": "gidi-grilz",
+			"path": "../gidi-grilz"
+		}
+	],
+	"settings": {}
+}

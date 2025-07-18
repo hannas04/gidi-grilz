@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grill Master - Hero Section</title>
+    <!-- Using Playfair Display for a fancy look, and Inter as a fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="querries.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo-container">
+                <img class="navbar-logo-image" src="hero-img/gidi-logo.jpg" alt="Grill Master Logo">
+            </a>
+            <div class="nav-links-desktop">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#menu" class="nav-link">Our Menu</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact Us</a>
+            </div>
+            <div class="hamburger-icon" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#home" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+        <a href="#about" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">About Us</a>
+        <a href="#menu" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Our Menu</a>
+        <a href="#testimonials" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Testimonials</a>
+        <a href="#contact" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Contact Us</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="mySlides fade active">
+                <!-- Image is now set as background-image in CSS -->
+                <div class="text-content">
+                    <h1 class="block-heading">Grilled Steak Perfection</h1>
+                    <p class="primary-paragraph">Experience the rich, smoky taste of our expertly grilled steaks.</p>
+                    <a href="#contact" class="cta-button">View Menu</a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="mySlides fade">
+                <!-- Image is now set as background-image in CSS -->
+                <div class="text-content">
+                    <h1 class="block-heading">Tender Grilled Chicken</h1>
+                    <p class="primary-paragraph">Marinated to perfection, our chicken offers robust flavor.</p>
+                    <a href="#contact" class="cta-button">Book Table</a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="mySlides fade">
+                <!-- Image is now set as background-image in CSS -->
+                <div class="text-content">
+                    <h1 class="block-heading">Authentic BBQ Ribs</h1>
+                    <p class="primary-paragraph">Slow-smoked and basted with our secret BBQ sauce.</p>
+                    <a href="#contact" class="cta-button">Catering</a>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="mySlides fade">
+                <!-- Image is now set as background-image in CSS -->
+                <div class="text-content">
+                    <h1 class="block-heading">Fresh Grilled Salmon</h1>
+                    <p class="primary-paragraph">Lightly seasoned and grilled to flaky perfection.</p>
+                    <a href="#contact" class="cta-button">Read Reviews</a>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- Dots Container -->
+        <div class="dot-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" style="background-color: var(--darker-background);">
+        <div class="about-content">
+            <div class="text-left-container">
+                <h2 class="section-heading animate-on-scroll">About Gidi Grillz</h2>
+                <p class="section-paragraph animate-on-scroll">Welcome to Grill Master, where passion for grilling meets culinary excellence. We believe in the art of fire and flavor, bringing you the finest grilled proteins cooked to perfection.</p>
+                <p class="section-paragraph animate-on-scroll">Our journey began with a simple idea: to create an unforgettable dining experience centered around the smoky, rich tastes that only a master grill can achieve. Every dish is prepared with the freshest ingredients and a dedication to authentic grilling techniques.</p>
+                <p class="section-paragraph animate-on-scroll">Join us and discover why Grill Master is the ultimate destination for grilled protein enthusiasts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Menu Section -->
+    <section id="menu" style="background-color: var(--darker-background);">
+        <h2 class="section-heading animate-on-scroll">Our Menu</h2>
+        <div class="menu-gallery">
+            <!-- Menu Item 1 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container">
+                   <img src="my-gallery/gallery-1.jpg" alt="Grilled Steak" class="menu-image">
+                </div>
+                <h3 class="menu-title">Signature Grilled Steak</h3>
+                <p class="menu-description">A tender, juicy steak grilled to your perfection, served with seasonal vegetables.</p>
+            </div>
+            <!-- Menu Item 2 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container"> <img src="my-gallery/gallery-2.jpg" alt="BBQ Ribs" class="menu-image"></div>
+                <h3 class="menu-title">Smoky BBQ Ribs</h3>
+                <p class="menu-description">Fall-off-the-bone ribs basted in our homemade tangy BBQ sauce.</p>
+            </div>
+            <!-- Menu Item 3 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container"> <img src="my-gallery/gallery-3.jpg" alt="Grilled Chicken" class="menu-image"> </div>
+                <h3 class="menu-title">Herb-Marinated Chicken</h3>
+                <p class="menu-description">Succulent chicken breast marinated in fresh herbs and grilled to golden perfection.</p>
+            </div>
+            <!-- Menu Item 4 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container"> <img src="my-gallery/gallery-4.jpg" alt="Grilled Salmon" class="menu-image"></div>
+                <h3 class="menu-title">Grilled Atlantic Salmon</h3>
+                <p class="menu-description">Fresh salmon fillet, lightly seasoned and grilled, served with lemon butter sauce.</p>
+            </div>
+            <!-- Menu Item 5 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container">  <img src="my-gallery/gallery-5.jpg" class="menu-image"></div>
+                <h3 class="menu-title">Grilled Lamb Chops</h3>
+                <p class="menu-description">Tender lamb chops seasoned with rosemary and garlic, grilled to your liking.</p>
+            </div>
+            <!-- Menu Item 6 -->
+            <div class="menu-item animate-on-scroll">
+                <div class="image-gradient-container">  <img src="my-gallery/gallery-6.jpg" alt="Veggie Skewers" class="menu-image"> </div>
+                <h3 class="menu-title">Grilled Veggie Skewers</h3>
+                <p class="menu-description">A colorful assortment of fresh vegetables grilled and lightly seasoned.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <h2 class="section-heading animate-on-scroll">What Our Customers Say</h2>
+        <div class="testimonial-slideshow-container">
+            <!-- Testimonial Slide 1 -->
+            <div class="testimonial-slide fade active">
+                <img src="passport-1.jpg" alt="Customer Photo 1" class="testimonial-author-image">
+                <p class="testimonial-quote">"Grill Master offers the best steak I've ever tasted! The flavor is incredible and the meat is always perfectly cooked."</p>
+                <p class="testimonial-author">- Jane Doe, Food Critic</p>
+            </div>
+
+            <!-- Testimonial Slide 2 -->
+            <div class="testimonial-slide fade">
+                <img src="passport-2.jpg" alt="Customer Photo 2" class="testimonial-author-image">
+                <p class="testimonial-quote">"The grilled chicken is a must-try! So tender and juicy, with a fantastic marinade. Highly recommend!"</p>
+                <p class="testimonial-author">- John Smith, Regular Customer</p>
+            </div>
+
+            <!-- Testimonial Slide 3 -->
+            <div class="testimonial-slide fade">
+                <img src="passport-3.jpg" alt="Customer Photo 3" class="testimonial-author-image">
+                <p class="testimonial-quote">"I'm a big fan of their BBQ ribs. They just fall off the bone and the sauce is out of this world. Five stars!"</p>
+                <p class="testimonial-author">- Emily White, BBQ Enthusiast</p>
+            </div>
+
+            <!-- Testimonial Slide 4 -->
+            <div class="testimonial-slide fade">
+                <img src="passport-4.jpg" alt="Customer Photo 4" class="testimonial-author-image">
+                <p class="testimonial-quote">"Even their grilled vegetables are amazing! Fresh, perfectly cooked, and a great healthy option."</p>
+                <p class="testimonial-author">- David Green, Health Conscious Diner</p>
+            </div>
+
+            <!-- Navigation Arrows for Testimonials -->
+            <a class="testimonial-prev" onclick="plusTestimonialSlides(-1)">&#10094;</a>
+            <a class="testimonial-next" onclick="plusTestimonialSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- Dots Container for Testimonials -->
+        <div class="testimonial-dot-container">
+            <span class="testimonial-dot active" onclick="currentTestimonialSlide(1)"></span>
+            <span class="testimonial-dot" onclick="currentTestimonialSlide(2)"></span>
+            <span class="testimonial-dot" onclick="currentTestimonialSlide(3)"></span>
+            <span class="testimonial-dot" onclick="currentTestimonialSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" style="background-color: var(--darker-background);">
+        <h2 class="section-heading animate-on-scroll">Contact Us</h2>
+        <div class="contact-section-content">
+            <div class="contact-form-container animate-on-scroll">
+                <p class="section-paragraph animate-on-scroll" style="text-align: center;">Have questions or want to make a reservation? Reach out to us!</p>
+                <div class="contact-info animate-on-scroll">
+                    <p><strong>Address:</strong> 123 Grill Master Lane, Flavor Town, GR 54321</p>
+                    <p><strong>Phone:</strong> (123) 456-7890</p>
+                    <p><strong>Email:</strong> info@grillmaster.com</p>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="contact-submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Grill Master</h3>
+                <p>123 Grill Master Lane, Flavor Town, GR 54321</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Email: info@grillmaster.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Grill Master. All rights reserved.</p>
+        </div>
+    </footer>
+
+ <script src="script.js"></script>
+</body>
+</html>

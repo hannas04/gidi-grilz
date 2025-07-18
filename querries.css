@@ -1,0 +1,252 @@
+ /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .block-heading {
+                font-size: 2.75rem;
+            }
+            .primary-paragraph {
+                font-size: 1.3rem;
+            }
+            .section-heading {
+                font-size: 2.5rem;
+            }
+            .section-paragraph {
+                font-size: 1.05rem;
+            }
+            .menu-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .menu-title {
+                font-size: 1.6rem;
+            }
+            .testimonial-quote {
+                font-size: 1.8rem;
+            }
+            .testimonial-author {
+                font-size: 1.1rem;
+            }
+            .contact-section-content {
+                grid-template-columns: 1fr; /* Stack columns on tablets */
+            }
+            .contact-form-container {
+                text-align: center; /* Center content when stacked */
+            }
+            .contact-form {
+                max-width: 400px; /* Constrain form width on smaller screens */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .social-links {
+                justify-content: center; /* Center social links when stacked */
+            }
+            .footer-content {
+                grid-template-columns: 1fr; /* Stack footer sections on tablets */
+                text-align: center;
+            }
+            .footer-section h3 {
+                text-align: center;
+            }
+            .footer-section ul {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-icon {
+                display: flex;
+            }
+            .nav-links-desktop {
+                display: none;
+            }
+            .navbar {
+                padding: 0.75rem 1rem; /* Adjusted for mobile */
+            }
+            .mobile-menu {
+                top: 66px; /* Match navbar height */
+                height: calc(100vh - 66px);
+                width: 100vw; /* Ensure it covers the full viewport width */
+                left: 0;
+                right: 0;
+            }
+            .block-heading {
+                font-size: 2.2rem; /* Adjusted for better fit on tablets */
+                margin-bottom: 1rem;
+            }
+            .primary-paragraph {
+                font-size: 1rem; /* Adjusted for better fit on tablets */
+                margin-bottom: 1.2rem;
+            }
+            .text-content {
+                padding: 1.2rem;
+                max-width: 95%;
+            }
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+            .prev, .next {
+                padding: 0.8rem 1rem;
+                font-size: 1.2rem;
+                top: 68%; /* Adjusted to avoid text overlap on smaller screens */
+            }
+            .next { right: 0.5rem; }
+            .prev { left: 0.5rem; }
+            .dot-container {
+                bottom: 0.8rem;
+            }
+            .navbar-logo-image {
+                width: 45px;
+                height: 45px;
+            }
+            .about-content {
+                grid-template-columns: 1fr; /* Stack columns on tablets */
+                text-align: center;
+            }
+            .about-content .text-left-container {
+                text-align: center; /* Center text on tablets */
+            }
+            .about-content .section-heading {
+                text-align: center; /* Center heading on tablets */
+            }
+            .menu-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            .menu-title {
+                font-size: 1.5rem;
+            }
+            .menu-description {
+                font-size: 0.9rem;
+            }
+            .testimonial-slide {
+                padding: 1.5rem;
+                max-width: 90%;
+            }
+            .testimonial-quote {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .testimonial-author {
+                font-size: 1rem;
+            }
+            .testimonial-author-image {
+                width: 70px;
+                height: 70px;
+            }
+            .testimonial-prev, .testimonial-next {
+                padding: 0.7rem 0.9rem;
+                font-size: 1.1rem;
+            }
+            .testimonial-dot-container {
+                bottom: 0.5rem;
+            }
+            .contact-section-content {
+                padding: 1.5rem 0.8rem;
+            }
+            .contact-info p {
+                font-size: 0.95rem;
+            }
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.85rem;
+            }
+            .contact-submit-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .block-heading {
+                font-size: 4.5rem; /* Significantly increased for small phones */
+                margin-bottom: 0.8rem;
+            }
+            .primary-paragraph {
+                font-size: 1.3rem; /* Significantly increased for small phones */
+                line-height: 1.4;
+                margin-bottom: 1rem;
+            }
+            .text-content {
+                padding: 9rem; /* Adjusted padding for better fit */
+                max-width: 600%;
+                height: 100vh;
+            }
+            .cta-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .prev, .next {
+                padding: 0.5rem 0.7rem;
+                font-size: 1rem;
+                top: 72%; /* Adjusted for better placement on very small screens */
+            }
+            .navbar {
+                padding: 0.6rem 0.8rem;
+                height: 13%;
+            }
+            .navbar-logo-image {
+                width: 40px;
+                height: 40px;
+            }
+            .mobile-menu {
+                top: 56px; /* Adjusted for smaller navbar height */
+                height: calc(100vh - 56px);
+            }
+            .mobile-menu .nav-link {
+                font-size: 1.3rem; /* Adjust mobile menu links */
+            }
+            .section-heading {
+                font-size: 2rem; /* Adjusted for small phones */
+            }
+            .section-paragraph {
+                font-size: 0.9rem; /* Adjusted for small phones */
+            }
+            .menu-gallery {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .menu-item {
+                padding-bottom: 1rem;
+            }
+            .menu-image {
+                height: 180px;
+            }
+            .menu-title {
+                font-size: 1.3rem;
+            }
+            .menu-description {
+                font-size: 0.85rem;
+            }
+            .testimonial-slide {
+                padding: 1rem;
+            }
+            .testimonial-quote {
+                font-size: 1.3rem;
+            }
+            .testimonial-author {
+                font-size: 0.9rem;
+            }
+            .testimonial-author-image {
+                width: 60px;
+                height: 60px;
+            }
+            .testimonial-prev, .testimonial-next {
+                padding: 0.5rem 0.7rem;
+                font-size: 0.9rem;
+            }
+            .contact-section-content {
+                padding: 1rem 0.5rem;
+            }
+            .contact-info p {
+                font-size: 0.85rem;
+            }
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.85rem;
+            }
+            .contact-submit-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+  

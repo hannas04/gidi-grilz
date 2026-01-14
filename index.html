@@ -3,259 +3,805 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grill Master - Hero Section</title>
-    <!-- Using Playfair Display for a fancy look, and Inter as a fallback -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="querries.css">
+    <title>Gidi Grillz | Premium Event Catering & Grilling Services in Lagos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --red: #FF3333;
+            --black: #080808;
+            --surface: #121212;
+            --white: #FFFFFF;
+            --serif: 'Bodoni Moda', serif;
+            --sans: 'Montserrat', sans-serif;
+            --nav-height: 90px;
+        }
+
+        /* Base Setup */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--black); color: var(--white); font-family: var(--sans); overflow-x: hidden; line-height: 1.6; }
+
+        /* --- 1. FIXED NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: var(--nav-height); z-index: 3000;
+            padding: 0 6%; display: flex; justify-content: space-between; align-items: center;
+            background:#000; backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 51, 51, 0.2);
+        }
+
+        .logo-container img { height: 70px; width: auto; display: block; }
+
+        .nav-links { display: flex; gap: 35px; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--red); }
+
+        /* Mobile Burger Icon */
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 7px; z-index: 4001; }
+        .burger span { width: 32px; height: 1.5px; background: var(--red); transition: 0.4s; }
+
+        @media (max-width: 968px) {
+            .burger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 100%;
+                background: var(--black); flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); gap: 45px;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.4rem; letter-spacing: 4px; }
+            
+            .burger.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); }
+            .burger.toggle span:nth-child(2) { opacity: 0; }
+            .burger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); }
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section { padding: 120px 8%; position: relative; }
+        .title-group { text-align: center; margin-bottom: 80px; }
+        .title-group h2 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--red); font-style: italic; }
+        .red-divider { width: 50px; height: 1px; background: var(--red); margin: 20px auto; }
+
+        /* 2. HERO */
+        .hero {
+            height: 100vh; display: flex; align-items: center; padding: 0 8%;
+            background: linear-gradient(to right, rgba(8, 8, 8, 0.979), transparent), 
+                        url('hero.jpg') center/cover fixed;
+        }
+        .hero-content h1 { font-family: var(--serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.95; margin-bottom: 25px; }
+        .hero-content span { color: var(--red); }
+        .btn-red { 
+            padding: 20px 45px; border: 1px solid var(--red); color: var(--red); 
+            text-decoration: none; display: inline-block; letter-spacing: 4px; font-size: 0.8rem;
+            text-transform: uppercase; font-weight: 600; transition: 0.4s;
+        }
+        .btn-red:hover { background: var(--red); color: var(--white); box-shadow: 0 0 25px rgba(255, 51, 51, 0.3); }
+
+        /* 3. ABOUT - CATERING FOCUS */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px; align-items: center; }
+        .about-text h3 { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 30px; }
+        .about-text p { color: #888; margin-bottom: 25px; font-size: 1.1rem; }
+        .about-img { border: 1px solid var(--red); padding: 15px; }
+        .about-img img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.1); }
+
+        /* 4. CATERING SERVICES */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: #0f0f0f; padding: 70px 40px; text-align: center; border: 1px solid #1a1a1a; transition: 0.4s; }
+        .card:hover { border-color: var(--red); transform: translateY(-10px); }
+        .card i { font-size: 2.5rem; color: var(--red); margin-bottom: 30px; }
+
+        /* 5. MENU */
+        .menu-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .menu-item { height: 500px; overflow: hidden; position: relative; }
+        .menu-item img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s; }
+        .menu-item:hover img { transform: scale(1.1); }
+        .menu-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 1; transition: 0.4s; }
+        .menu-overlay h3 { font-family: var(--serif); font-size: 3rem; letter-spacing: 2px; }
+
+        /* 6. PARALLAX */
+        .grill-parallax { height: 400px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974') center/cover fixed; display: flex; align-items: center; justify-content: center; }
+
+        /* 7. DELIVERY AREAS */
+        .travel-section { background: var(--red); color: var(--white); text-align: center; padding: 100px 8%; }
+        .travel-section h2 { font-family: var(--serif); font-size: 3rem; margin-bottom: 20px; }
+
+        /* 8. MENU OFFERINGS */
+        .signature-dishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .dish-card { background: #0a0a0a; border: 1px solid #1a1a1a; overflow: hidden; transition: 0.4s; }
+        .dish-card:hover { transform: translateY(-5px); border-color: var(--red); }
+        .dish-image { height: 280px; transition: 0.6s; }
+        .dish-card:hover .dish-image { transform: scale(1.05); }
+        .dish-info { padding: 35px 30px; }
+        .dish-info h3 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 15px; }
+        .dish-info p { color: #888; font-size: 0.95rem; line-height: 1.7; }
+        .dish-tag { display: inline-block; margin-top: 20px; padding: 8px 20px; background: var(--red); color: var(--white); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; }
+
+        /* 9. STATS */
+        .stats-wrap { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 50px; text-align: center; border-bottom: 1px solid #222; padding-bottom: 100px; }
+        .stat-val { font-family: var(--serif); font-size: 4rem; color: var(--red); display: block; }
+
+        /* Process Timeline */
+        .process-timeline { max-width: 900px; margin: 0 auto; }
+        .process-step { display: flex; gap: 40px; margin-bottom: 60px; align-items: flex-start; }
+        .step-number { font-family: var(--serif); font-size: 4rem; color: var(--red); line-height: 1; font-style: italic; min-width: 100px; }
+        .step-content h3 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; }
+        .step-content p { color: #888; font-size: 1.05rem; line-height: 1.8; }
+
+        /* Booking Form */
+        .booking-container { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto; }
+        .booking-form { background: #0a0a0a; padding: 60px; border: 1px solid #222; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 30px; }
+        .form-group label { color: var(--red); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+        .form-group input, .form-group select, .form-group textarea { 
+            background: #000; border: 1px solid #333; color: var(--white); padding: 18px 20px; 
+            font-family: var(--sans); font-size: 1rem; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            outline: none; border-color: var(--red); 
+        }
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .checkbox-label { display: flex; align-items: center; gap: 12px; color: #ccc; cursor: pointer; font-size: 0.95rem; }
+        .checkbox-label input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--red); }
+        .btn-submit { 
+            width: 100%; padding: 22px; background: var(--red); color: var(--white); 
+            border: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; 
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; display: flex; 
+            justify-content: center; align-items: center; gap: 15px;
+        }
+        .btn-submit:hover { background: #ff4444; transform: translateY(-2px); }
+        .form-note { text-align: center; color: #666; font-size: 0.8rem; margin-top: 20px; }
+
+        .booking-sidebar { display: flex; flex-direction: column; gap: 30px; }
+        .quick-contact { background: #0a0a0a; padding: 40px; border: 1px solid #222; }
+        .quick-contact h3 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 30px; }
+        .contact-method { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; }
+        .contact-method i { font-size: 1.8rem; color: var(--red); }
+        .contact-method strong { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+        .contact-method p { color: #888; font-size: 0.95rem; }
+        
+        .booking-info { background: linear-gradient(135deg, var(--red) 0%, #ff4444 100%); padding: 40px; color: var(--white); }
+        .booking-info h4 { font-size: 1.3rem; margin-bottom: 20px; font-weight: 600; }
+        .booking-info ul { list-style: none; }
+        .booking-info li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+        .booking-info li:last-child { border-bottom: none; }
+        .booking-info li:before { content: "✓ "; margin-right: 10px; font-weight: bold; }
+
+        /* FAQ */
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #222; margin-bottom: 0; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 35px 0; cursor: pointer; transition: 0.3s; }
+        .faq-question:hover { color: var(--red); }
+        .faq-question h3 { font-size: 1.3rem; font-weight: 500; }
+        .faq-question i { color: var(--red); font-size: 1.2rem; transition: 0.3s; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s; }
+        .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 30px; }
+        .faq-answer p { color: #888; line-height: 1.8; font-size: 1.05rem; }
+
+        /* Gallery Masonry */
+        .gallery-masonry { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 5px; padding: 40px 0 0;
+        }
+        .gallery-item { overflow: hidden; height: 300px; }
+        .gallery-item.tall { grid-row: span 2; height: 605px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; filter: grayscale(0.3); }
+        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0); }
+
+        /* Client Testimonials Slider */
+        .testimonials-slider { max-width: 1000px; margin: 0 auto; position: relative; overflow: hidden; }
+        .testimonial-slide { display: none; text-align: center; padding: 40px; }
+        .testimonial-slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .testimonial-text { font-family: var(--serif); font-size: 1.8rem; font-style: italic; color: #ccc; margin-bottom: 30px; line-height: 1.6; }
+        .testimonial-author { color: var(--red); font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; }
+        .testimonial-role { color: #666; font-size: 0.9rem; margin-top: 5px; }
+        .slider-dots { display: flex; justify-content: center; gap: 15px; margin-top: 40px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #333; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--red); transform: scale(1.3); }
+
+        /* Pricing Tiers */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .pricing-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 60px 40px; text-align: center; transition: 0.4s; position: relative; }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--red); }
+        .pricing-card.featured { border-color: var(--red); background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
+        .pricing-badge { position: absolute; top: -15px; right: 30px; background: var(--red); color: var(--white); padding: 8px 20px; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; }
+        .pricing-title { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 20px; }
+        .pricing-price { font-family: var(--serif); font-size: 3rem; color: var(--red); margin-bottom: 10px; }
+        .pricing-desc { color: #888; margin-bottom: 40px; font-size: 0.95rem; }
+        .pricing-features { list-style: none; margin-bottom: 40px; }
+        .pricing-features li { padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ccc; font-size: 0.95rem; }
+        .pricing-features li:last-child { border-bottom: none; }
+
+        @media (max-width: 768px) {
+            .menu-gallery { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .booking-container { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .process-step { flex-direction: column; gap: 20px; }
+            .step-number { font-size: 3rem; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .gallery-masonry { grid-template-columns: 1fr; }
+            .gallery-item.tall { height: 300px; grid-row: span 1; }
+            
+            .hero, .grill-parallax {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="#" class="navbar-logo-container">
-                <img class="navbar-logo-image" src="hero-img/gidi-logo.jpg" alt="Grill Master Logo">
-            </a>
-            <div class="nav-links-desktop">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About Us</a>
-                <a href="#menu" class="nav-link">Our Menu</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#contact" class="nav-link">Contact Us</a>
-            </div>
-            <div class="hamburger-icon" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="logo.jpg" alt="Gidi Grillz Logo">
+        </a>
+        
+        <div class="burger" id="burger">
+            <span></span><span></span><span></span>
         </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#booking">Book Event</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobileMenu" class="mobile-menu">
-        <a href="#home" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
-        <a href="#about" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">About Us</a>
-        <a href="#menu" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Our Menu</a>
-        <a href="#testimonials" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Testimonials</a>
-        <a href="#contact" class="nav-link mobile-nav-link" onclick="toggleMobileMenu()">Contact Us</a>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p style="letter-spacing: 5px; text-transform: uppercase; color: var(--red); margin-bottom: 15px;">Lagos Premium Catering</p>
+            <h1>Premium Event <span>Catering</span> <br>& Grilling Services</h1>
+            <a href="#booking" class="btn-red">Book Your Event</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 style="font-family: var(--serif); color: var(--red); font-size: 3rem; margin-bottom: 20px;">Your Event's Perfect Flavor</h2>
+                <p>Gidi Grillz specializes in premium event catering and on-site grilling services. Whether it's a corporate gathering, wedding, birthday celebration, or family reunion, we bring authentic, flame-grilled perfection to your event.</p>
+                <p>With over 1000+ successful events catered across Lagos, our team of professional chefs delivers world-class food service with impeccable presentation and exceptional taste that leaves guests impressed and satisfied.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974" alt="Event Catering">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: var(--surface);">
+        <div class="title-group"><h2>Our Catering Services</h2><div class="red-divider"></div></div>
+        <div class="grid-3">
+            <div class="card"><i class="fas fa-utensils"></i><h3>Full Event Catering</h3><p>Complete food service for all event types with professional setup and service team.</p></div>
+            <div class="card"><i class="fas fa-fire"></i><h3>On-Site Grilling</h3><p>Live grilling stations with expert chefs preparing food fresh in front of your guests.</p></div>
+            <div class="card"><i class="fas fa-handshake"></i><h3>Menu Customization</h3><p>Tailored menus designed specifically for your event preferences and guest count.</p></div>
+        </div>
+    </section>
+
+    <!-- MENU OFFERINGS -->
+    <section>
+        <div class="title-group"><h2>Signature Catering Menu</h2><div class="red-divider"></div></div>
+        <div class="signature-dishes">
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1998') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Premium Beef Burgers</h3>
+                    <p>Handcrafted beef patties flame-grilled to perfection with premium toppings.</p>
+                    <span class="dish-tag">POPULAR</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=2011') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Grilled Chicken Shawarma</h3>
+                    <p>Marinated grilled chicken with authentic sauce and fresh vegetables in pita wraps.</p>
+                    <span class="dish-tag">SIGNATURE</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('https://images.unsplash.com/photo-1542574271-7f3b92e6c821?q=80&w=1974') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Loaded Grilled Hot Dogs</h3>
+                    <p>Premium sausages topped with grilled onions, cheese, and special sauce.</p>
+                    <span class="dish-tag">FAVORITE</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Mixed Grill Platters</h3>
+                    <p>Assorted flame-grilled meats with premium sides and elegant presentation.</p>
+                    <span class="dish-tag">EVENTS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="title-group"><h2>Event Menu Categories</h2><div class="red-divider"></div></div>
+        <div class="menu-gallery">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2065" alt="Grilled Meats">
+                <div class="menu-overlay"><h3>Grilled Meats</h3></div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=2070" alt="Shawarma & Wraps">
+                <div class="menu-overlay"><h3>Shawarma & Wraps</h3></div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1612392062798-2dbaa2c0daa1?q=80&w=2070" alt="Sides & Appetizers">
+                <div class="menu-overlay"><h3>Sides & Appetizers</h3></div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974" alt="Full Platters">
+                <div class="menu-overlay"><h3>Full Platters</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="grill-parallax">
+        <h2 style="font-family: var(--serif); font-size: 4rem; text-transform: uppercase;">Professional Event Catering</h2>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="slideshow-container">
-            <!-- Slide 1 -->
-            <div class="mySlides fade active">
-                <!-- Image is now set as background-image in CSS -->
-                <div class="text-content">
-                    <h1 class="block-heading">Grilled Steak Perfection</h1>
-                    <p class="primary-paragraph">Experience the rich, smoky taste of our expertly grilled steaks.</p>
-                    <a href="#contact" class="cta-button">View Menu</a>
+    <!-- THE PROCESS -->
+    <section style="background: var(--surface);">
+        <div class="title-group"><h2>Our Catering Process</h2><div class="red-divider"></div></div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Consultation & Planning</h3>
+                    <p>We meet with you to understand your event details, guest count, dietary preferences, and budget.</p>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="mySlides fade">
-                <!-- Image is now set as background-image in CSS -->
-                <div class="text-content">
-                    <h1 class="block-heading">Tender Grilled Chicken</h1>
-                    <p class="primary-paragraph">Marinated to perfection, our chicken offers robust flavor.</p>
-                    <a href="#contact" class="cta-button">Book Table</a>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Custom Menu Design</h3>
+                    <p>Our chefs create a personalized menu using premium ingredients tailored to your event theme.</p>
                 </div>
             </div>
-
-            <!-- Slide 3 -->
-            <div class="mySlides fade">
-                <!-- Image is now set as background-image in CSS -->
-                <div class="text-content">
-                    <h1 class="block-heading">Authentic BBQ Ribs</h1>
-                    <p class="primary-paragraph">Slow-smoked and basted with our secret BBQ sauce.</p>
-                    <a href="#contact" class="cta-button">Catering</a>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Professional Setup & Service</h3>
+                    <p>Our team handles setup, on-site grilling, and professional service throughout your event.</p>
                 </div>
             </div>
-
-            <!-- Slide 4 -->
-            <div class="mySlides fade">
-                <!-- Image is now set as background-image in CSS -->
-                <div class="text-content">
-                    <h1 class="block-heading">Fresh Grilled Salmon</h1>
-                    <p class="primary-paragraph">Lightly seasoned and grilled to flaky perfection.</p>
-                    <a href="#contact" class="cta-button">Read Reviews</a>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Flawless Execution</h3>
+                    <p>We ensure food is served fresh, hot, and beautifully presented, managing all logistics seamlessly.</p>
                 </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
-        <!-- Dots Container -->
-        <div class="dot-container">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" style="background-color: var(--darker-background);">
-        <div class="about-content">
-            <div class="text-left-container">
-                <h2 class="section-heading animate-on-scroll">About Gidi Grillz</h2>
-                <p class="section-paragraph animate-on-scroll">Welcome to Grill Master, where passion for grilling meets culinary excellence. We believe in the art of fire and flavor, bringing you the finest grilled proteins cooked to perfection.</p>
-                <p class="section-paragraph animate-on-scroll">Our journey began with a simple idea: to create an unforgettable dining experience centered around the smoky, rich tastes that only a master grill can achieve. Every dish is prepared with the freshest ingredients and a dedication to authentic grilling techniques.</p>
-                <p class="section-paragraph animate-on-scroll">Join us and discover why Grill Master is the ultimate destination for grilled protein enthusiasts.</p>
             </div>
         </div>
     </section>
 
-    <!-- Our Menu Section -->
-    <section id="menu" style="background-color: var(--darker-background);">
-        <h2 class="section-heading animate-on-scroll">Our Menu</h2>
-        <div class="menu-gallery">
-            <!-- Menu Item 1 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container">
-                   <img src="my-gallery/gallery-1.jpg" alt="Grilled Steak" class="menu-image">
-                </div>
-                <h3 class="menu-title">Signature Grilled Steak</h3>
-                <p class="menu-description">A tender, juicy steak grilled to your perfection, served with seasonal vegetables.</p>
-            </div>
-            <!-- Menu Item 2 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container"> <img src="my-gallery/gallery-2.jpg" alt="BBQ Ribs" class="menu-image"></div>
-                <h3 class="menu-title">Smoky BBQ Ribs</h3>
-                <p class="menu-description">Fall-off-the-bone ribs basted in our homemade tangy BBQ sauce.</p>
-            </div>
-            <!-- Menu Item 3 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container"> <img src="my-gallery/gallery-3.jpg" alt="Grilled Chicken" class="menu-image"> </div>
-                <h3 class="menu-title">Herb-Marinated Chicken</h3>
-                <p class="menu-description">Succulent chicken breast marinated in fresh herbs and grilled to golden perfection.</p>
-            </div>
-            <!-- Menu Item 4 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container"> <img src="my-gallery/gallery-4.jpg" alt="Grilled Salmon" class="menu-image"></div>
-                <h3 class="menu-title">Grilled Atlantic Salmon</h3>
-                <p class="menu-description">Fresh salmon fillet, lightly seasoned and grilled, served with lemon butter sauce.</p>
-            </div>
-            <!-- Menu Item 5 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container">  <img src="my-gallery/gallery-5.jpg" class="menu-image"></div>
-                <h3 class="menu-title">Grilled Lamb Chops</h3>
-                <p class="menu-description">Tender lamb chops seasoned with rosemary and garlic, grilled to your liking.</p>
-            </div>
-            <!-- Menu Item 6 -->
-            <div class="menu-item animate-on-scroll">
-                <div class="image-gradient-container">  <img src="my-gallery/gallery-6.jpg" alt="Veggie Skewers" class="menu-image"> </div>
-                <h3 class="menu-title">Grilled Veggie Skewers</h3>
-                <p class="menu-description">A colorful assortment of fresh vegetables grilled and lightly seasoned.</p>
-            </div>
-        </div>
+    <section class="travel-section">
+        <h2>We Serve Across Greater Lagos</h2>
+        <p style="letter-spacing: 2px; font-weight: 600;">Mainland • Island • Lekki • Victoria Island • Ikoyi • Ikeja • Surulere</p>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <h2 class="section-heading animate-on-scroll">What Our Customers Say</h2>
-        <div class="testimonial-slideshow-container">
-            <!-- Testimonial Slide 1 -->
-            <div class="testimonial-slide fade active">
-                <img src="passport-1.jpg" alt="Customer Photo 1" class="testimonial-author-image">
-                <p class="testimonial-quote">"Grill Master offers the best steak I've ever tasted! The flavor is incredible and the meat is always perfectly cooked."</p>
-                <p class="testimonial-author">- Jane Doe, Food Critic</p>
-            </div>
-
-            <!-- Testimonial Slide 2 -->
-            <div class="testimonial-slide fade">
-                <img src="passport-2.jpg" alt="Customer Photo 2" class="testimonial-author-image">
-                <p class="testimonial-quote">"The grilled chicken is a must-try! So tender and juicy, with a fantastic marinade. Highly recommend!"</p>
-                <p class="testimonial-author">- John Smith, Regular Customer</p>
-            </div>
-
-            <!-- Testimonial Slide 3 -->
-            <div class="testimonial-slide fade">
-                <img src="passport-3.jpg" alt="Customer Photo 3" class="testimonial-author-image">
-                <p class="testimonial-quote">"I'm a big fan of their BBQ ribs. They just fall off the bone and the sauce is out of this world. Five stars!"</p>
-                <p class="testimonial-author">- Emily White, BBQ Enthusiast</p>
-            </div>
-
-            <!-- Testimonial Slide 4 -->
-            <div class="testimonial-slide fade">
-                <img src="passport-4.jpg" alt="Customer Photo 4" class="testimonial-author-image">
-                <p class="testimonial-quote">"Even their grilled vegetables are amazing! Fresh, perfectly cooked, and a great healthy option."</p>
-                <p class="testimonial-author">- David Green, Health Conscious Diner</p>
-            </div>
-
-            <!-- Navigation Arrows for Testimonials -->
-            <a class="testimonial-prev" onclick="plusTestimonialSlides(-1)">&#10094;</a>
-            <a class="testimonial-next" onclick="plusTestimonialSlides(1)">&#10095;</a>
-        </div>
-
-        <!-- Dots Container for Testimonials -->
-        <div class="testimonial-dot-container">
-            <span class="testimonial-dot active" onclick="currentTestimonialSlide(1)"></span>
-            <span class="testimonial-dot" onclick="currentTestimonialSlide(2)"></span>
-            <span class="testimonial-dot" onclick="currentTestimonialSlide(3)"></span>
-            <span class="testimonial-dot" onclick="currentTestimonialSlide(4)"></span>
-        </div>
-    </section>
-
-    <!-- Contact Us Section -->
-    <section id="contact" style="background-color: var(--darker-background);">
-        <h2 class="section-heading animate-on-scroll">Contact Us</h2>
-        <div class="contact-section-content">
-            <div class="contact-form-container animate-on-scroll">
-                <p class="section-paragraph animate-on-scroll" style="text-align: center;">Have questions or want to make a reservation? Reach out to us!</p>
-                <div class="contact-info animate-on-scroll">
-                    <p><strong>Address:</strong> 123 Grill Master Lane, Flavor Town, GR 54321</p>
-                    <p><strong>Phone:</strong> (123) 456-7890</p>
-                    <p><strong>Email:</strong> info@grillmaster.com</p>
-                </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="contact-submit-button">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Grill Master</h3>
-                <p>123 Grill Master Lane, Flavor Town, GR 54321</p>
-                <p>Phone: (123) 456-7890</p>
-                <p>Email: info@grillmaster.com</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#menu">Our Menu</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+    <!-- PRICING PACKAGES -->
+    <section style="background: var(--surface);">
+        <div class="title-group"><h2>Catering Packages</h2><div class="red-divider"></div></div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-title">Small Gathering</h3>
+                <div class="pricing-price">₦150K</div>
+                <p class="pricing-desc">Intimate events & celebrations</p>
+                <ul class="pricing-features">
+                    <li>20-30 Guests</li>
+                    <li>3 Menu Items</li>
+                    <li>Setup & Cleanup</li>
+                    <li>Service Team</li>
                 </ul>
+                <a href="#booking" class="btn-red" style="display: block; text-align: center;">Inquire</a>
             </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">Twitter</a>
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">LinkedIn</a>
+            <div class="pricing-card featured">
+                <span class="pricing-badge">MOST POPULAR</span>
+                <h3 class="pricing-title">Corporate Event</h3>
+                <div class="pricing-price">₦300K</div>
+                <p class="pricing-desc">Professional corporate catering</p>
+                <ul class="pricing-features">
+                    <li>50-100 Guests</li>
+                    <li>5 Menu Items</li>
+                    <li>On-Site Grilling Station</li>
+                    <li>Professional Staff</li>
+                    <li>Setup & Breakdown</li>
+                    <li>Beverages Included</li>
+                </ul>
+                <a href="#booking" class="btn-red" style="display: block; text-align: center;">Book Now</a>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">Premium Celebration</h3>
+                <div class="pricing-price">Custom</div>
+                <p class="pricing-desc">Large events & weddings</p>
+                <ul class="pricing-features">
+                    <li>100+ Guests</li>
+                    <li>Unlimited Menu Options</li>
+                    <li>Multiple Grilling Stations</li>
+                    <li>Professional Event Team</li>
+                    <li>Custom Branding</li>
+                    <li>Full Event Management</li>
+                </ul>
+                <a href="#booking" class="btn-red" style="display: block; text-align: center;">Get Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-wrap">
+        <div><span class="stat-val">1000+</span><p>EVENTS CATERED</p></div>
+        <div><span class="stat-val">5K+</span><p>SATISFIED GUESTS</p></div>
+        <div><span class="stat-val">4.9</span><p>AVERAGE RATING</p></div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <section style="background: #000;">
+        <div class="title-group"><h2>Event Reviews</h2><div class="red-divider"></div></div>
+        <div class="testimonials-slider">
+            <div class="testimonial-slide active">
+                <p class="testimonial-text">"Gidi Grillz catered our corporate event and it was a huge success! The food was excellent, presentation was perfect, and the team was incredibly professional."</p>
+                <div class="testimonial-author">DAVID OKONKWO</div>
+                <div class="testimonial-role">Corporate Events Manager</div>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"Our wedding catering was flawless! The on-site grilling station was a huge hit with guests. Every detail was perfect from start to finish."</p>
+                <div class="testimonial-author">CHIOMA & TUNDE</div>
+                <div class="testimonial-role">Wedding Clients</div>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"Best catering service in Lagos. The quality of food, professionalism of staff, and attention to detail exceeded all our expectations for our birthday celebration."</p>
+                <div class="testimonial-author">FOLAKE ADEYEMI</div>
+                <div class="testimonial-role">Event Organizer</div>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active" onclick="changeSlide(0)"></span>
+                <span class="dot" onclick="changeSlide(1)"></span>
+                <span class="dot" onclick="changeSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING FORM SECTION -->
+    <section id="booking" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
+        <div class="title-group">
+            <h2>Book Your Event</h2>
+            <div class="red-divider"></div>
+            <p style="color: #888; max-width: 600px; margin: 20px auto 0;">Complete the form below to request a catering quote for your upcoming event. We'll contact you within 24 hours.</p>
+        </div>
+        
+        <div class="booking-container">
+            <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required placeholder="080XXXXXXXX">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Event Date *</label>
+                        <input type="date" name="date" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Event Type *</label>
+                        <select name="eventType" required>
+                            <option value="">Select event type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="family">Family Gathering</option>
+                            <option value="conference">Conference</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Guests *</label>
+                        <input type="number" name="guests" required placeholder="Expected guest count" min="20">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Event Venue/Location *</label>
+                        <input type="text" name="location" required placeholder="Where will the event be held?">
+                    </div>
+                    <div class="form-group">
+                        <label>Event Time *</label>
+                        <input type="time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Menu Preferences *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="grilled_meats"> Grilled Meats
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="burgers"> Premium Burgers
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="shawarma"> Shawarma
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="hotdogs"> Hot Dogs
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="sides"> Sides & Appetizers
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="menu" value="custom"> Custom Menu
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Special Requests & Dietary Info</label>
+                    <textarea name="message" rows="5" placeholder="Any special dietary requirements, theme preferences, or additional services needed..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Send Event Inquiry via WhatsApp
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+
+                <p class="form-note">We'll get back to you with a custom quote within 24 hours.</p>
+            </form>
+
+            <div class="booking-sidebar">
+                <div class="quick-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp Direct</strong>
+                            <p>+234 815 509 5977</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+234 907 906 0548</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>info@gidigrillz.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Hours</strong>
+                            <p>Mon-Sun: 9AM - 8PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-info">
+                    <h4>Why Choose Us</h4>
+                    <ul>
+                        <li>1000+ events catered</li>
+                        <li>Professional chef team</li>
+                        <li>Premium ingredient quality</li>
+                        <li>Flexible customization</li>
+                        <li>Full event support</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Grill Master. All rights reserved.</p>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section style="background: var(--black);">
+        <div class="title-group"><h2>Catering FAQs</h2><div class="red-divider"></div></div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is your minimum guest count?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our minimum catering is for 20 guests. For smaller groups, please contact us directly at +234 815 509 5977 to discuss options.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How far in advance should I book?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We recommend booking at least 2 weeks in advance to ensure availability and allow time for menu planning. Rush bookings within 72 hours may have limited options.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you provide service staff?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! All our catering packages include professional service staff for setup, food service, and cleanup. We handle everything so you can enjoy your event.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can you accommodate dietary restrictions?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We can prepare vegetarian, vegan, gluten-free, and other dietary-specific meals. Let us know your requirements when booking.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you provide setup and cleanup?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, complete setup and breakdown is included in all our packages. We also provide tables, serving dishes, and disposables as needed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is your payment policy?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>A 50% deposit is required to confirm booking, with the balance due 3 days before the event. We accept bank transfers and cash.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SHOWCASE -->
+    <section style="padding: 0;">
+        <div class="title-group" style="padding: 80px 8% 0;"><h2>Event Gallery</h2><div class="red-divider"></div></div>
+        <div class="gallery-masonry">
+            <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1998" alt="Burger Plating"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=2011" alt="Shawarma Wraps"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974" alt="Live Grilling"></div>
+            <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1542574271-7f3b92e6c821?q=80&w=1974" alt="Hot Dog Station"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2065" alt="Grill Master"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=2070" alt="Service Team"></div>
+        </div>
+    </section>
+
+    <footer id="contact" style="padding: 100px 8% 50px; background: #050505; border-top: 1px solid #1a1a1a;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;">
+            <div>
+                <img src="logo.jpg" alt="Gidi Grillz" style="height: 60px; margin-bottom: 25px;">
+                <p style="color: #666; max-width: 350px;">Professional event catering and on-site grilling services across Lagos. We bring premium, flame-grilled excellence to your celebrations.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--red); margin-bottom: 25px; letter-spacing: 2px;">CONTACT</h4>
+                <p>+234 815 509 5977</p>
+                <p>+234 907 906 0548</p>
+                <p style="margin-top: 15px; color: #666;">info@gidigrillz.com</p>
+            </div>
+            <div>
+                <h4 style="color: var(--red); margin-bottom: 25px; letter-spacing: 2px;">FOLLOW US</h4>
+                <div style="font-size: 1.5rem; display: flex; gap: 20px;">
+                    <a href="#" style="color:white;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color:white;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" style="color:white;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color:white;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #222; color: #666; font-size: 0.85rem;">
+            <p>&copy; 2026 Gidi Grillz. All Rights Reserved. | Premium Event Catering in Lagos</p>
         </div>
     </footer>
 
- <script src="script.js"></script>
+    <script>
+        // MOBILE NAV LOGIC
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+
+        // FAQ ACCORDION
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // TESTIMONIAL SLIDER
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function changeSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => {
+            const next = (currentSlide + 1) % slides.length;
+            changeSlide(next);
+        }, 6000);
+
+        // BOOKING FORM SUBMISSION
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const menuItems = [];
+            formData.getAll('menu').forEach(item => menuItems.push(item));
+            
+            const message = `
+*EVENT CATERING INQUIRY*
+
+Name: ${formData.get('name')}
+Phone: ${formData.get('phone')}
+Email: ${formData.get('email')}
+Event Date: ${formData.get('date')}
+Event Type: ${formData.get('eventType')}
+Number of Guests: ${formData.get('guests')}
+Venue Location: ${formData.get('location')}
+Event Time: ${formData.get('time')}
+Menu Preferences: ${menuItems.join(', ')}
+Special Requests: ${formData.get('message') || 'None'}
+            `.trim();
+            
+            const whatsappUrl = `https://wa.me/2348155095977?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            alert('Thank you! Your inquiry has been sent via WhatsApp. We will contact you shortly with a custom quote.');
+            e.target.reset();
+        });
+    </script>
 </body>
 </html>

@@ -19,6 +19,34 @@
             --nav-height: 90px;
         }
 
+        /* --- FIX HORIZONTAL OVERFLOW & MEDIA --- */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden; /* strong guard against horizontal scroll */
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* prevent images/media from overflowing containers */
+        img, video, iframe, .menu-item img, .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* subtle global transitions for smoother UI */
+        * {
+            transition: color .22s ease, background-color .22s ease, transform .28s cubic-bezier(.2,.8,.2,1);
+        }
+
+        /* animated reveal helper (applied via JS) */
+        .section-animate { opacity: 0; transform: translateY(28px); will-change: transform, opacity; transition: opacity .64s ease, transform .64s cubic-bezier(.2,.8,.2,1); }
+        .section-animate.in-view { opacity: 1; transform: translateY(0); }
+
+        /* footer layout override (so mobile rules can target it reliably) */
+        footer > div:first-child { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; align-items:start; }
+        footer img { max-width: 100%; height: auto; display: block; }
+
         /* Base Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -217,20 +245,25 @@
 
         @media (max-width: 768px) {
             .menu-gallery { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .booking-container { grid-template-columns: 1fr; }
+            /* make footer stack vertically on small screens */
+            footer > div:first-child { grid-template-columns: 1fr; gap: 30px; }
+            .booking-container { grid-template-columns: 1fr; padding: 30px 4%; gap: 30px; }
             .form-row { grid-template-columns: 1fr; }
             .process-step { flex-direction: column; gap: 20px; }
             .step-number { font-size: 3rem; }
             .checkbox-group { grid-template-columns: 1fr; }
             .gallery-masonry { grid-template-columns: 1fr; }
             .gallery-item.tall { height: 300px; grid-row: span 1; }
-            
-            .hero, .grill-parallax {
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center;
-            }
+
+            /* hero + parallax mobile handling (avoid layout jump and fixed bg issues) */
+            .hero { min-height: 60vh; height: auto; padding: 60px 6%; background-attachment: scroll; background-position: center; background-size: cover; }
+            .grill-parallax { background-attachment: scroll; background-position: center; background-size: cover; padding: 60px 6%; height: auto; min-height: 240px; display:flex; align-items:center; justify-content:center; }
+
+            /* mobile nav panel padding to avoid overflow when open */
+            .nav-links { box-sizing: border-box; padding: 80px 6%; }
+
+            /* reduce footer padding a bit */
+            footer { padding: 80px 6% 40px; }
         }
     </style>
 </head>
@@ -801,6 +834,30 @@ Special Requests: ${formData.get('message') || 'None'}
             
             alert('Thank you! Your inquiry has been sent via WhatsApp. We will contact you shortly with a custom quote.');
             e.target.reset();
+        });
+
+        // SCROLL REVEAL (IntersectionObserver)
+        (function () {
+            const selector = 'section, .dish-card, .menu-item, .pricing-card, .gallery-item, .testimonial-slide, .card';
+            const opts = { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.12 };
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target); // reveal once
+                    }
+                });
+            }, opts);
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.classList.add('section-animate');
+                io.observe(el);
+            });
+        })();
+
+        // small safety: ensure nothing causes overflow at runtime (useful after dynamic content)
+        window.addEventListener('resize', () => {
+            document.documentElement.style.removeProperty('width'); // keep layout flexible
         });
     </script>
 </body>
